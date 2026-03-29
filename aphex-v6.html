@@ -118,6 +118,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pcta.ou:hover{border-color:var(--navy)}
 .feat{background:var(--cream2);border-top:1px solid var(--bor);border-bottom:1px solid var(--bor)}
 .feat-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px;padding:100px 56px}
+.sofia-split{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:80px;padding-top:40px}
+.mentoria-sec{background:var(--white)}
+.mentoria-wrap{max-width:720px;margin:32px auto 0}
 .fchip{display:inline-flex;align-items:center;gap:6px;background:rgba(26,42,74,.07);border:1px solid rgba(26,42,74,.12);border-radius:6px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--navy);margin-bottom:20px;width:fit-content}
 .fh{font-size:clamp(26px,3vw,40px);font-weight:900;letter-spacing:-1px;line-height:1.08;color:var(--navy);margin-bottom:16px}
 .fp{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:24px}
@@ -156,6 +159,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .dtrack-w{overflow:hidden;margin:56px -56px 0;padding:0 56px}
 .dtrack{display:flex;gap:24px;transition:transform .4s cubic-bezier(.16,1,.3,1)}
 .dcard{background:var(--white);border:1px solid var(--bor);border-radius:20px;padding:32px;flex:0 0 calc(33.333% - 16px);min-width:calc(33.333% - 16px);transition:all .3s}
+@media (min-width:768px){
+  .depos .dtrack-w{overflow:visible;margin:56px auto 0;padding:0;max-width:1200px}
+  .depos .dtrack{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;transform:none!important}
+  .depos .dcard{flex:none;min-width:0;width:100%}
+  .depos .dnav{display:none!important}
+}
 .dcard:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,42,74,.08)}
 .dstars{color:var(--amber);font-size:16px;margin-bottom:14px;letter-spacing:2px}
 .dtext{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:24px;font-style:italic}
@@ -225,6 +234,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   .pgrid{grid-template-columns:1fr;gap:16px}
   .pcard{padding:28px 22px}
   .feat-in{grid-template-columns:1fr;padding:56px 20px;gap:36px}
+  .sofia-split{grid-template-columns:1fr;padding-top:32px;gap:36px}
   .fh{font-size:24px}
   .smock{max-width:100%}
   .bio{padding:56px 20px}
@@ -232,8 +242,6 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   .bwrap{display:none}
   .depos{padding:56px 0}
   .depos-in{padding:0 20px}
-  .dtrack-w{margin:32px -20px 0;padding:0 20px}
-  .dcard{flex:0 0 calc(100% - 0px);min-width:calc(100% - 0px)}
   .cd{padding:24px 20px}
   .cta{padding:56px 20px}
   .cta-in{grid-template-columns:1fr;gap:36px}
@@ -242,6 +250,12 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   footer{padding:24px 20px;flex-direction:column;text-align:center}
   .flinks{justify-content:center}
   .mmenu{top:64px}
+}
+@media(max-width:767px){
+  .depos .dtrack-w{overflow:hidden;margin:32px -20px 0;padding:0 20px}
+  .depos .dtrack{display:flex;transform:translateX(0)}
+  .depos .dcard{flex:0 0 100%;min-width:100%}
+  .depos .dnav{display:flex}
 }
 @media(max-width:480px){
   nav{height:60px;padding:0 16px}
@@ -254,10 +268,11 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   .trust{padding:24px 16px}
   .sec{padding:44px 16px}
   .feat-in{padding:44px 16px}
+  .sofia-split{padding-top:28px;gap:28px}
   .bio{padding:44px 16px}
   .depos{padding:44px 0}
   .depos-in{padding:0 16px}
-  .dtrack-w{margin:28px -16px 0;padding:0 16px}
+  .depos .dtrack-w{margin:28px -16px 0;padding:0 16px}
   .cta{padding:44px 16px}
   .fbox{padding:24px 16px}
   footer{padding:20px 16px}
@@ -270,8 +285,8 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 <nav>
   <img class="nav-logo" id="nl" alt="Aphex">
   <ul class="nav-links">
-    <li><a href="#solucoes">Soluções</a></li>
     <li><a href="#sofia">Sofia</a></li>
+    <li><a href="#mentoria">Mentoria</a></li>
     <li><a href="#fundador">Fundador</a></li>
     <li><a href="#depoimentos">Depoimentos</a></li>
   </ul>
@@ -281,8 +296,8 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   </div>
 </nav>
 <div class="mmenu" id="mm">
-  <a href="#solucoes" onclick="toggleMenu()">Soluções</a>
   <a href="#sofia" onclick="toggleMenu()">Sofia</a>
+  <a href="#mentoria" onclick="toggleMenu()">Mentoria</a>
   <a href="#fundador" onclick="toggleMenu()">Fundador</a>
   <a href="#depoimentos" onclick="toggleMenu()">Depoimentos</a>
   <a href="#contato" class="mmenu-cta" onclick="toggleMenu()">Pedir retorno</a>
@@ -291,12 +306,12 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 <section class="hero" aria-labelledby="hero-heading">
   <div class="hero-bg"></div>
   <div>
-    <div class="hero-tag">Para clínica que não pode parar no WhatsApp</div>
-    <h1 id="hero-heading">Atenda mais pacientes <em>sem</em> estourar sua equipe no celular</h1>
-    <p class="hero-sub">Quando o WhatsApp vira plantão informal, lead some, agenda embaralha e o time cansa. A Sofia responde com contexto de convênio e urgência enquanto você dorme. A mentoria e a consultoria vêm de quem fundou e opera duas clínicas em Jundiaí e já organizou mais de 41 mil atendimentos na prática.</p>
+    <div class="hero-tag">Soluções para instituições e negócios de saúde</div>
+    <h1 id="hero-heading">A Aphex une <em>tecnologia</em> e gestão para quem cuida de gente</h1>
+    <p class="hero-sub">Somos uma empresa focada no setor da saúde: produtos e serviços que organizam atendimento, comunicação com pacientes e decisões de negócio. Tudo pensado para clínicas, consultórios e equipes que precisam de resultado no mundo real, com apoio de quem fundou e opera duas clínicas em Jundiaí e já organizou mais de 41 mil atendimentos na prática.</p>
     <div class="hero-acts">
-      <a href="#contato" class="bn">Quero resolver isso na minha clínica →</a>
-      <a href="#solucoes" class="bo">Ver Sofia e mentoria</a>
+      <a href="#contato" class="bn">Falar com a Aphex →</a>
+      <a href="#sofia" class="bo">Ver o que oferecemos</a>
     </div>
     <div class="stats">
       <div><span class="snum" data-t="41" data-s=" mil+">0</span><div class="slabel">Atendimentos realizados na operação</div></div>
@@ -308,7 +323,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
     <div class="photo-wrap">
       <img class="hero-photo" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Profissional de saúde utilizando tablet em ambiente clínico" width="1000" height="667" fetchpriority="high">
       <div class="photo-frame"></div>
-      <div class="hbadge b1"><div class="hbi am">🤖</div><div><div class="hbv">Sofia no WhatsApp</div><div class="hbs">Primeira resposta em segundos, 24 horas</div></div></div>
+      <div class="hbadge b1"><div class="hbi am">⚡</div><div><div class="hbv">Tecnologia aplicada</div><div class="hbs">Do primeiro contato aos processos internos</div></div></div>
       <div class="hbadge b2"><div class="hbi na">✓</div><div><div class="hbv">41 mil+ atendimentos</div><div class="hbs">Na operação que sustenta a Aphex</div></div></div>
     </div>
   </div>
@@ -324,62 +339,57 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   </div>
 </div>
 
-<section class="sec r" id="solucoes" style="background:var(--cream)" aria-labelledby="solucoes-heading">
+<section class="sec r" id="sofia" style="background:var(--cream)" aria-labelledby="sofia-sec-heading">
   <div class="sec-in">
-    <div class="eyebrow">O que entrega resultado</div>
-    <h2 class="sec-h" id="solucoes-heading">Duas alavancas:<br>atendimento no WhatsApp e decisão na gestão</h2>
-    <p class="sec-p">Ou você fecha o buraco onde o paciente manda mensagem e some, ou você alinha caixa, pessoas e crescimento com alguém que já fez isso na pele. Muitas clínicas usam as duas.</p>
-    <div class="pgrid">
-      <div class="pcard da">
-        <div class="pnum">01 · Sofia no WhatsApp</div>
-        <div class="pico am">🤖</div>
-        <h3 class="ptitle">Primeiro contato que não depende da sorte da recepção</h3>
-        <div class="psub">IA treinada para o jeito da sua clínica</div>
-        <p class="pdesc">A Sofia responde com rapidez, entende convênio e urgência, ajuda a organizar retorno e deixa tudo visível no painel para a equipe humanizar o que importa. Ela não substitui decisão médica; ela tira o ruído do começo da conversa.</p>
-        <ul class="plist"><li>Mensagem fora do horário vira atendimento, não silêncio</li><li>Triagem com contexto para quem assume o caso depois</li><li>Integração com Feegow</li><li>CRM com prioridade clara para a recepção</li></ul>
-        <a href="https://sofia-landing-production.up.railway.app" target="_blank" rel="noopener noreferrer" class="pcta am">Ver como a Sofia funciona →</a>
+    <div class="eyebrow">Produto Aphex</div>
+    <h2 class="sec-h" id="sofia-sec-heading">Sofia: atendimento inteligente no WhatsApp da clínica</h2>
+    <p class="sec-p">A assistente virtual da Aphex responde com rapidez, entende convênio e urgência, ajuda a organizar retorno e deixa tudo visível no painel para a equipe humanizar o que importa. Ela não substitui decisão médica; ela reduz o ruído do primeiro contato.</p>
+    <div class="sofia-split">
+      <div>
+        <div class="fchip">🤖 Powered by Anthropic</div>
+        <h3 class="fh" id="sofia-heading" style="font-size:clamp(22px,2.5vw,32px)">Onde a Sofia alivia o seu time</h3>
+        <p class="fp">Quem está na recepção ou no consultório não precisa ficar refém do celular. A Sofia filtra o que é repetitivo, classifica o que é sensível e entrega histórico para a pessoa certa continuar com calma.</p>
+        <ul class="flist">
+          <li>Resposta em segundos, de madrugada e fim de semana</li>
+          <li>Convênio, especialidade e urgência no contexto da mensagem</li>
+          <li>Lê foto ou PDF de encaminhamento quando ajuda a encurtar o caminho</li>
+          <li>Painel e CRM com marcação visual do que não pode esperar</li>
+        </ul>
+        <a href="https://sofia-landing-production.up.railway.app" target="_blank" rel="noopener noreferrer" class="ba" style="width:fit-content">Abrir página da Sofia →</a>
       </div>
-      <div class="pcard">
-        <div class="pnum">02 · Mentoria com o Thiago</div>
-        <div class="pico na">🎯</div>
-        <h3 class="ptitle">Gestão de clínica sem achismo</h3>
-        <div class="psub">Sessões com quem opera duas unidades em Jundiaí</div>
-        <p class="pdesc">Você traz o problema real: fluxo de caixa, time, preço, marketing, expansão. O Thiago devolve prioridade e próximo passo com a mesma linguagem de quem já segurou fila, fornecedor e paciente insatisfeito no mesmo dia.</p>
-        <ul class="plist"><li>Avulso ou pacote com acompanhamento</li><li>Presencial em Jundiaí ou online</li><li>Foco em decisão que mexe no resultado da semana</li><li>Trilho de quem gerencia milhares de pacientes ativos</li></ul>
-        <a href="https://wa.me/5511995869329?text=Tenho%20interesse%20na%20mentoria%20Aphex." target="_blank" rel="noopener noreferrer" class="pcta na">Falar sobre mentoria no WhatsApp →</a>
+      <div class="fvis">
+        <div class="smock">
+          <div class="smh"><div class="smav">🤖</div><div><div class="smn">Sofia, clínica exemplo</div><div class="sms">online agora</div></div></div>
+          <div class="smb">
+            <div class="sb i">Oi, sou a Sofia. Você precisa de consulta ou só tirar uma dúvida?<div class="st">09:00</div></div>
+            <div class="sb o">Psicólogo, Unimed, sou paciente novo<div class="st">09:01</div></div>
+            <div class="sb i">Temos vaga com Unimed. Prefere manhã ou tarde?<div class="st">09:01</div></div>
+            <div class="sb o">Manhã, por favor<div class="st">09:02</div></div>
+            <div class="styping"><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="feat r" id="sofia" aria-labelledby="sofia-heading">
-  <div class="feat-in">
-    <div>
-      <div class="fchip">🤖 Powered by Anthropic</div>
-      <h3 class="fh" id="sofia-heading">Onde a Sofia alivia o seu time</h3>
-      <p class="fp">Quem está na recepção ou no consultório não precisa ficar refém do celular. A Sofia filtra o que é repetitivo, classifica o que é sensível e entrega histórico para a pessoa certa continuar com calma.</p>
-      <ul class="flist">
-        <li>Resposta em segundos, de madrugada e fim de semana</li>
-        <li>Convênio, especialidade e urgência no contexto da mensagem</li>
-        <li>Lê foto ou PDF de encaminhamento quando ajuda a encurtar o caminho</li>
-        <li>Painel e CRM com marcação visual do que não pode esperar</li>
-      </ul>
-      <a href="https://sofia-landing-production.up.railway.app" target="_blank" rel="noopener noreferrer" class="ba" style="width:fit-content">Abrir página da Sofia →</a>
-    </div>
-    <div class="fvis">
-      <div class="smock">
-        <div class="smh"><div class="smav">🤖</div><div><div class="smn">Sofia, clínica exemplo</div><div class="sms">online agora</div></div></div>
-        <div class="smb">
-          <div class="sb i">Oi, sou a Sofia. Você precisa de consulta ou só tirar uma dúvida?<div class="st">09:00</div></div>
-          <div class="sb o">Psicólogo, Unimed, sou paciente novo<div class="st">09:01</div></div>
-          <div class="sb i">Temos vaga com Unimed. Prefere manhã ou tarde?<div class="st">09:01</div></div>
-          <div class="sb o">Manhã, por favor<div class="st">09:02</div></div>
-          <div class="styping"><div class="sdot"></div><div class="sdot"></div><div class="sdot"></div></div>
-        </div>
+<section class="sec r mentoria-sec" id="mentoria" aria-labelledby="mentoria-heading">
+  <div class="sec-in">
+    <div class="eyebrow">Mentoria Aphex</div>
+    <h2 class="sec-h" id="mentoria-heading">Mentoria em gestão de clínica com o Thiago Alves</h2>
+    <div class="mentoria-wrap">
+      <div class="pcard">
+        <div class="pnum">Encontros sob medida</div>
+        <div class="pico na">🎯</div>
+        <h3 class="ptitle">Gestão de clínica sem achismo</h3>
+        <div class="psub">Sessões com quem opera duas unidades em Jundiaí</div>
+        <p class="pdesc">Você traz o problema real: fluxo de caixa, time, preço, marketing, expansão. O Thiago devolve prioridade e próximo passo com a mesma linguagem de quem já segurou fila, fornecedor e paciente insatisfeito no mesmo dia.</p>
+        <ul class="plist"><li>Avulso ou pacote com acompanhamento</li><li>Presencial em Jundiaí ou online</li><li>Foco em decisão que mexe no resultado da semana</li><li>Experiência de quem gerencia milhares de pacientes ativos</li></ul>
+        <a href="https://wa.me/5511995869329?text=Tenho%20interesse%20na%20mentoria%20Aphex." target="_blank" rel="noopener noreferrer" class="pcta na">Falar sobre mentoria no WhatsApp →</a>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <section class="bio r" id="fundador" aria-labelledby="fundador-heading">
   <div class="bio-in">
@@ -400,8 +410,8 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 
 <section class="depos r" id="depoimentos" aria-labelledby="depoimentos-heading">
   <div class="depos-in">
-    <div class="eyebrow">Recomendações</div>
-    <h2 class="sec-h" id="depoimentos-heading">O que dizem quem já sentou com o Thiago</h2>
+    <div class="eyebrow">Depoimentos</div>
+    <h2 class="sec-h" id="depoimentos-heading">Avaliações de profissionais de saúde sobre a mentoria</h2>
   </div>
   <div class="dtrack-w">
     <div class="dtrack" id="dt">
@@ -545,33 +555,51 @@ document.addEventListener("click", function(e){
 });
 (function(){
   var cur = 0, total = 3, timer = null;
+  var track = document.getElementById("dt");
+  function isMob(){ return window.innerWidth < 768; }
   function getW(){
-    var track = document.getElementById("dt");
     if(!track) return 300;
     var card = track.querySelector(".dcard");
     return card ? card.offsetWidth + 24 : 300;
   }
   function go(n){
+    if(!track) return;
     cur = ((n%total)+total)%total;
-    var track = document.getElementById("dt");
-    if(track) track.style.transform = "translateX(-"+(cur*getW())+"px)";
+    if(isMob()) track.style.transform = "translateX(-"+(cur*getW())+"px)";
     document.querySelectorAll(".ddot").forEach(function(d,i){ d.classList.toggle("active", i===cur); });
   }
-  function reset(){ if(timer) clearInterval(timer); timer = setInterval(function(){ go(cur+1); }, 5000); }
-  window.gd = function(n){ go(n); reset(); };
-  window.dn = function(){ go(cur+1); reset(); };
-  window.dp = function(){ go(cur-1); reset(); };
-  var track = document.getElementById("dt");
+  function stopAuto(){ if(timer){ clearInterval(timer); timer = null; } }
+  function startAuto(){
+    stopAuto();
+    if(!isMob()) return;
+    timer = setInterval(function(){ go(cur+1); }, 5000);
+  }
+  function layoutDepos(){
+    if(!track) return;
+    if(isMob()){
+      go(cur);
+      startAuto();
+    } else {
+      stopAuto();
+      track.style.transform = "";
+      cur = 0;
+      document.querySelectorAll(".ddot").forEach(function(d,i){ d.classList.toggle("active", i===cur); });
+    }
+  }
+  window.gd = function(n){ go(n); startAuto(); };
+  window.dn = function(){ go(cur+1); startAuto(); };
+  window.dp = function(){ go(cur-1); startAuto(); };
   if(track){
     var ts = 0;
     track.addEventListener("touchstart", function(e){ ts = e.touches[0].clientX; }, {passive:true});
     track.addEventListener("touchend", function(e){
+      if(!isMob()) return;
       var d = ts - e.changedTouches[0].clientX;
       if(Math.abs(d)>50){ d>0 ? window.dn() : window.dp(); }
     });
   }
-  window.addEventListener("resize", function(){ go(cur); });
-  reset();
+  window.addEventListener("resize", function(){ layoutDepos(); });
+  layoutDepos();
 })();
 function enviar(){
   var n = document.getElementById("fn").value.trim();
