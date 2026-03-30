@@ -15,8 +15,21 @@ const types = {
 };
 
 http.createServer((req, res) => {
-  let filePath = req.url === '/' ? '/index.html' : req.url;
-  filePath = path.join(__dirname, filePath);
+  let rel = (req.url || '/').split('?')[0];
+  if (rel === '/') rel = '/index.html';
+  try {
+    rel = decodeURIComponent(rel);
+  } catch (e) {
+    res.writeHead(400);
+    res.end('Bad request');
+    return;
+  }
+  if (rel.includes('..')) {
+    res.writeHead(403);
+    res.end('Forbidden');
+    return;
+  }
+  const filePath = path.join(__dirname, rel);
   const ext = path.extname(filePath);
   fs.readFile(filePath, (err, data) => {
     if (err) { res.writeHead(404); res.end('Not found'); return; }
