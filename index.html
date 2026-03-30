@@ -37,7 +37,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--text);font-family:var(--font);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:72px;background:rgba(248,246,242,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bor)}
-.nav-logo{height:36px;width:auto;display:block;filter:brightness(0) saturate(100%) invert(13%) sepia(28%) saturate(1200%) hue-rotate(195deg) brightness(85%)}
+.nav-logo{height:36px;width:auto;display:block;object-fit:contain}
 .nav-links{display:flex;gap:36px;list-style:none}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--navy)}
@@ -298,7 +298,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 <body>
 
 <nav>
-  <img class="nav-logo" id="nl" alt="Aphex">
+  <img class="nav-logo" src="Aphex 500.png" alt="Aphex">
   <ul class="nav-links">
     <li><a href="#sofia">Sofia</a></li>
     <li><a href="#mentoria">Mentoria</a></li>
@@ -509,10 +509,8 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 
 <script>
 (function(){
-  var nav = document.getElementById("nl");
   var foot = document.getElementById("fl");
   var L = document.getElementById("logo-data").textContent;
-  if(nav) nav.src = "data:image/png;base64," + L;
   if(foot) foot.src = "data:image/png;base64," + L;
 })();
 (function(){
