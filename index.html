@@ -308,6 +308,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
     <li><a href="#mentoria">Mentoria</a></li>
     <li><a href="#fundador">Fundador</a></li>
     <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="/blog.html" target="_blank">Blog</a></li>
   </ul>
   <div class="nav-right">
     <a href="#contato" class="nav-cta">Pedir retorno</a>
@@ -319,6 +320,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   <a href="#mentoria" onclick="toggleMenu()">Mentoria</a>
   <a href="#fundador" onclick="toggleMenu()">Fundador</a>
   <a href="#depoimentos" onclick="toggleMenu()">Depoimentos</a>
+  <a href="/blog.html" target="_blank" onclick="toggleMenu()">Blog</a>
   <a href="#contato" class="mmenu-cta" onclick="toggleMenu()">Pedir retorno</a>
 </div>
 
@@ -507,11 +509,11 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   <div class="flinks">
     <a href="#">Privacidade</a>
     <a href="#">Termos</a>
-    <a href="mailto:contato@aphex.com.br">contato@aphex.com.br</a>
+    <a href="/cdn-cgi/l/email-protection#2f4c40415b4e5b406f4e5f474a57014c4042014d5d"><span class="__cf_email__" data-cfemail="88ebe7e6fce9fce7c8e9f8e0edf0a6ebe7e5a6eafa">[email&#160;protected]</span></a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   function check(){
     document.querySelectorAll(".r").forEach(function(el){
@@ -614,11 +616,4 @@ function enviar(){
   var n = document.getElementById("fn").value.trim();
   var w = document.getElementById("fw").value.trim();
   var i = document.getElementById("fi").value;
-  if(!n||!w){ alert("Preencha nome e WhatsApp."); return; }
-  var msg = "Olá! Vim pelo site da Aphex.\n\n*Nome:* "+n+"\n*WhatsApp:* "+w+"\n*Interesse:* "+(i||"Não informado");
-  window.open("https://wa.me/5511995862295?text="+encodeURIComponent(msg),"_blank");
-}
-
-</script>
-</body>
-</html>
+  if(!n||!w){ alert("Preencha nome e WhatsApp.

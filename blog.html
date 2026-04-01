@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Aphex — Saúde, Gestão e Tecnologia</title>
+<meta name="description" content="Notícias, tendências e reflexões sobre gestão em saúde, tecnologia para clínicas e o setor de saúde no Brasil.">
+<link rel="canonical" href="https://aphex.com.br/blog.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#f8f6f2;--cream2:#f2efe9;
+  --navy:#1a2a4a;--navy2:#243856;--navy3:#0f1e35;
+  --amber:#b5813a;--amber-b:#c49a3c;
+  --adim:rgba(181,129,58,0.1);--abor:rgba(181,129,58,0.25);
+  --text:#1a1a1a;--muted:#6b7280;--muted2:#9ca3af;
+  --bor:#e5e0d8;--bor2:#d6d0c4;--white:#fff;
+  --font:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:var(--font);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:84px;background:rgba(248,246,242,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bor)}
+.nav-logo-text{font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-0.5px;text-decoration:none}
+.nav-logo-text span{color:var(--amber)}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;font-weight:500;text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-right-blog{display:flex;align-items:center;gap:16px}
+.nav-cta{background:var(--navy);color:#fff;padding:11px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--navy2)}
+
+/* HERO BLOG */
+.blog-hero{padding:140px 56px 80px;background:var(--navy);position:relative;overflow:hidden}
+.blog-hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(181,129,58,.12) 0%,transparent 70%);pointer-events:none}
+.blog-hero-in{max-width:1200px;margin:0 auto}
+.blog-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+.blog-hero h1{font-size:clamp(32px,4vw,56px);font-weight:900;letter-spacing:-2px;line-height:1.05;color:#fff;margin-bottom:16px}
+.blog-hero p{font-size:17px;color:rgba(255,255,255,.6);line-height:1.7;max-width:520px}
+
+/* FILTROS */
+.filtros{padding:32px 56px;border-bottom:1px solid var(--bor);background:var(--white);position:sticky;top:84px;z-index:50}
+.filtros-in{max-width:1200px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filtro-btn{padding:8px 18px;border-radius:20px;border:1.5px solid var(--bor2);background:transparent;font-family:var(--font);font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s}
+.filtro-btn:hover{border-color:var(--navy);color:var(--navy)}
+.filtro-btn.ativo{background:var(--navy);border-color:var(--navy);color:#fff}
+.filtro-count{margin-left:auto;font-size:13px;color:var(--muted)}
+
+/* GRID */
+.blog-main{max-width:1200px;margin:0 auto;padding:56px 56px}
+.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+
+/* POST CARD */
+.post-card{background:var(--white);border:1px solid var(--bor);border-radius:20px;overflow:hidden;transition:all .3s;cursor:pointer;text-decoration:none;display:block;color:inherit}
+.post-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(26,42,74,.1)}
+.post-card-img{aspect-ratio:1;background:var(--navy);position:relative;overflow:hidden}
+.post-card-img img{width:100%;height:100%;object-fit:cover}
+.post-card-img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px}
+.post-card-img-placeholder .tema-icon{font-size:40px}
+.post-card-img-placeholder .titulo-mini{font-size:16px;font-weight:800;color:#fff;text-align:center;line-height:1.2;max-width:200px}
+.post-tema-badge{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
+.post-body{padding:24px}
+.post-tema{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.post-titulo{font-size:17px;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:10px}
+.post-resumo{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.post-footer{display:flex;align-items:center;justify-content:space-between}
+.post-data{font-size:11px;color:var(--muted2)}
+.post-fonte{font-size:11px;color:var(--muted2)}
+.post-ler{font-size:12px;font-weight:700;color:var(--amber)}
+
+/* POST DESTAQUE (primeiro) */
+.post-card.destaque{grid-column:1/-1}
+.post-card.destaque .post-card-img{aspect-ratio:16/6}
+.post-card.destaque .post-body{padding:32px}
+.post-card.destaque .post-titulo{font-size:26px}
+.post-card.destaque .post-resumo{-webkit-line-clamp:2;font-size:15px}
+
+/* MODAL ARTIGO */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
+.modal-overlay.aberto{display:flex}
+.modal-artigo{background:#fff;border-radius:24px;max-width:780px;width:100%;margin:auto;overflow:hidden}
+.modal-artigo-img{aspect-ratio:16/7;background:var(--navy);position:relative}
+.modal-artigo-img img{width:100%;height:100%;object-fit:cover}
+.modal-artigo-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px}
+.modal-artigo-body{padding:40px}
+.modal-tema{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.modal-titulo{font-size:clamp(22px,3vw,32px);font-weight:900;letter-spacing:-1px;color:var(--navy);margin-bottom:16px;line-height:1.15}
+.modal-meta{display:flex;gap:16px;font-size:12px;color:var(--muted2);margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--bor)}
+.modal-conteudo{font-size:15px;color:var(--text);line-height:1.85}
+.modal-conteudo h2{font-size:20px;font-weight:800;color:var(--navy);margin:28px 0 12px;letter-spacing:-.5px}
+.modal-conteudo p{margin-bottom:16px}
+.modal-conteudo ul,.modal-conteudo ol{padding-left:20px;margin-bottom:16px}
+.modal-conteudo li{margin-bottom:8px}
+.modal-conteudo strong{color:var(--navy)}
+.modal-fonte{margin-top:32px;padding-top:24px;border-top:1px solid var(--bor);font-size:12px;color:var(--muted2)}
+.modal-fonte a{color:var(--amber);text-decoration:none}
+.modal-fechar{position:absolute;top:16px;right:16px;background:rgba(0,0,0,.5);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.modal-artigo-img{position:relative}
+
+/* EMPTY */
+.empty{text-align:center;padding:80px 20px;grid-column:1/-1}
+.empty-icon{font-size:48px;margin-bottom:16px}
+.empty h3{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.empty p{color:var(--muted);font-size:15px}
+
+/* LOADING */
+.loading{text-align:center;padding:80px 20px;grid-column:1/-1}
+.loading-spinner{width:40px;height:40px;border:3px solid var(--bor);border-top-color:var(--amber);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* FOOTER */
+footer{background:var(--navy3);padding:36px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:80px}
+footer p{font-size:13px;color:rgba(255,255,255,.35)}
+.flinks{display:flex;gap:20px}
+.flinks a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px}
+.flinks a:hover{color:rgba(255,255,255,.8)}
+.flogo-text{font-size:18px;font-weight:900;color:rgba(255,255,255,.7);letter-spacing:-0.5px}
+.flogo-text span{color:var(--amber)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:0 20px;height:72px}
+  .blog-hero{padding:110px 20px 60px}
+  .filtros{padding:20px;top:72px}
+  .blog-main{padding:32px 20px}
+  .posts-grid{grid-template-columns:1fr}
+  .post-card.destaque .post-card-img{aspect-ratio:16/9}
+  .post-card.destaque .post-titulo{font-size:20px}
+  .modal-artigo-body{padding:24px}
+  footer{padding:28px 20px;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo-text">APHEX<span>.</span></a>
+  <div class="nav-right-blog">
+    <a href="/" class="nav-back">← Voltar ao site</a>
+    <a href="/#contato" class="nav-cta">Falar com a Aphex</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <div class="blog-hero-in">
+    <div class="blog-eyebrow">Blog Aphex</div>
+    <h1>Saúde, Gestão<br>e Tecnologia</h1>
+    <p>Notícias e reflexões sobre o setor da saúde para gestores, médicos e empreendedores da área.</p>
+  </div>
+</div>
+
+<div class="filtros">
+  <div class="filtros-in">
+    <button class="filtro-btn ativo" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filtro-btn" onclick="filtrar('gestao', this)">Gestão</button>
+    <button class="filtro-btn" onclick="filtrar('tecnologia', this)">Tecnologia</button>
+    <button class="filtro-btn" onclick="filtrar('regulatorio', this)">Regulatório</button>
+    <button class="filtro-btn" onclick="filtrar('tendencias', this)">Tendências</button>
+    <button class="filtro-btn" onclick="filtrar('bem_estar', this)">Bem-estar</button>
+    <span class="filtro-count" id="filtroCount"></span>
+  </div>
+</div>
+
+<div class="blog-main">
+  <div class="posts-grid" id="postsGrid">
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <p style="color:var(--muted)">Carregando artigos...</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="fecharModal(event)">
+  <div class="modal-artigo" id="modalArtigo"></div>
+</div>
+
+<footer>
+  <div class="flogo-text">APHEX<span>.</span></div>
+  <p>© 2026 Aphex Consultoria e Gestão em Saúde. CNPJ 54.288.537/0001-28. Jundiaí, SP.</p>
+  <div class="flinks">
+    <a href="/">Site</a>
+    <a href="mailto:contato@aphex.com.br">contato@aphex.com.br</a>
+  </div>
+</footer>
+
+<script>
+const TEMAS = {
+  gestao: { icon: '📊', label: 'Gestão' },
+  tecnologia: { icon: '🤖', label: 'Tecnologia' },
+  regulatorio: { icon: '📋', label: 'Regulatório' },
+  tendencias: { icon: '🚀', label: 'Tendências' },
+  bem_estar: { icon: '💚', label: 'Bem-estar' },
+};
+
+let todosPosts = [];
+let filtroAtual = 'todos';
+
+// Busca os posts publicados pelo Content Engine
+async function carregarPosts() {
+  try {
+    // Tenta carregar o índice de posts do repositório
+    const res = await fetch('/blog/index.json');
+    if (!res.ok) throw new Error('Sem posts ainda');
+    todosPosts = await res.json();
+  } catch {
+    // Fallback: posts de exemplo para quando ainda não há conteúdo
+    todosPosts = [
+      {
+        id: 'exemplo1',
+        titulo: 'O blog da Aphex está no ar',
+        titulo_blog: 'O blog da Aphex está no ar — conteúdo sobre saúde, gestão e tecnologia',
+        artigo_blog: '<p>Em breve publicaremos artigos e notícias sobre o setor da saúde, gestão de clínicas, tecnologia para consultórios e muito mais.</p><p>Acompanhe esta página para ficar por dentro das novidades do mercado de saúde brasileiro.</p>',
+        tema: 'gestao',
+        legenda_instagram: '',
+        fonte_nome: 'Aphex',
+        fonte_link: 'https://aphex.com.br',
+        publicadoEm: new Date().toISOString(),
+        imagem: null,
+      }
+    ];
+  }
+  renderizar();
+}
+
+function filtrar(tema, btn) {
+  filtroAtual = tema;
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+  btn.classList.add('ativo');
+  renderizar();
+}
+
+function renderizar() {
+  const grid = document.getElementById('postsGrid');
+  const posts = filtroAtual === 'todos'
+    ? todosPosts
+    : todosPosts.filter(p => p.tema === filtroAtual);
+
+  document.getElementById('filtroCount').textContent = `${posts.length} artigo${posts.length !== 1 ? 's' : ''}`;
+
+  if (!posts.length) {
+    grid.innerHTML = `<div class="empty">
+      <div class="empty-icon">📭</div>
+      <h3>Nenhum artigo nesta categoria</h3>
+      <p>Tente outro filtro ou volte em breve.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = posts.map((post, idx) => {
+    const tema = TEMAS[post.tema] || TEMAS.gestao;
+    const data = post.publicadoEm
+      ? new Date(post.publicadoEm).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+      : '';
+    const destaque = idx === 0;
+    const imgSrc = post.imagem || post.imagemPath;
+
+    return `<a class="post-card${destaque ? ' destaque' : ''}" onclick="abrirPost('${post.id}')" href="javascript:void(0)">
+      <div class="post-card-img">
+        ${imgSrc
+          ? `<img src="${imgSrc}" alt="${post.titulo_blog || post.titulo_card}" loading="lazy">`
+          : `<div class="post-card-img-placeholder">
+              <div class="tema-icon">${tema.icon}</div>
+              <div class="titulo-mini">${post.titulo_card || post.titulo_blog || ''}</div>
+            </div>`}
+        <div class="post-tema-badge">${tema.label}</div>
+      </div>
+      <div class="post-body">
+        <div class="post-tema">${tema.label}</div>
+        <div class="post-titulo">${post.titulo_blog || post.titulo_card}</div>
+        <div class="post-resumo">${stripHtml(post.artigo_blog || '')}</div>
+        <div class="post-footer">
+          <span class="post-data">${data}</span>
+          <span class="post-ler">Ler artigo →</span>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, '').substring(0, 200) + '...';
+}
+
+function abrirPost(id) {
+  const post = todosPosts.find(p => p.id === id);
+  if (!post) return;
+  const tema = TEMAS[post.tema] || TEMAS.gestao;
+  const data = post.publicadoEm
+    ? new Date(post.publicadoEm).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+    : '';
+  const imgSrc = post.imagem || post.imagemPath;
+
+  document.getElementById('modalArtigo').innerHTML = `
+    <div class="modal-artigo-img">
+      ${imgSrc
+        ? `<img src="${imgSrc}" alt="${post.titulo_blog}">`
+        : `<div class="modal-artigo-img-placeholder">${tema.icon}</div>`}
+      <button class="modal-fechar" onclick="fecharModal()">×</button>
+    </div>
+    <div class="modal-artigo-body">
+      <div class="modal-tema">${tema.label}</div>
+      <h1 class="modal-titulo">${post.titulo_blog || post.titulo_card}</h1>
+      <div class="modal-meta">
+        <span>📅 ${data}</span>
+        <span>📰 ${post.fonte_nome || 'Aphex'}</span>
+      </div>
+      <div class="modal-conteudo">${post.artigo_blog || ''}</div>
+      ${post.fonte_link ? `<div class="modal-fonte">Fonte original: <a href="${post.fonte_link}" target="_blank">${post.fonte_nome}</a></div>` : ''}
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay')) return;
+  document.getElementById('modalOverlay').classList.remove('aberto');
+  document.body.style.overflow = '';
+}
+
+carregarPosts();
+</script>
+</body>
+</html>
