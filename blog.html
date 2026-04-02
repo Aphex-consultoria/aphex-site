@@ -71,7 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* POST DESTAQUE (primeiro) */
 .post-card.destaque{grid-column:1/-1}
-.post-card.destaque .post-card-img{aspect-ratio:16/6}
+.post-card.destaque .post-card-img{aspect-ratio:16/9;max-height:400px}
 .post-card.destaque .post-body{padding:32px}
 .post-card.destaque .post-titulo{font-size:26px}
 .post-card.destaque .post-resumo{-webkit-line-clamp:2;font-size:15px}
@@ -80,8 +80,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
 .modal-overlay.aberto{display:flex}
 .modal-artigo{background:#fff;border-radius:24px;max-width:780px;width:100%;margin:auto;overflow:hidden}
-.modal-artigo-img{aspect-ratio:16/7;background:var(--navy);position:relative}
-.modal-artigo-img img{width:100%;height:100%;object-fit:cover}
+.modal-artigo-img{background:var(--navy);position:relative;max-height:400px;overflow:hidden}
+.modal-artigo-img img{width:100%;height:100%;object-fit:contain;background:var(--navy)}
 .modal-artigo-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px}
 .modal-artigo-body{padding:40px}
 .modal-tema{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
