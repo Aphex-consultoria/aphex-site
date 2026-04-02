@@ -283,35 +283,59 @@ function stripHtml(html) {
   return html.replace(/<[^>]*>/g, '').substring(0, 200) + '...';
 }
 
-function abrirPost(id) {
+async function abrirPost(id) {
   const post = todosPosts.find(p => p.id === id);
   if (!post) return;
-  const tema = TEMAS[post.tema] || TEMAS.gestao;
-  const data = post.publicadoEm
-    ? new Date(post.publicadoEm).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
+
+  // Mostra modal com loading enquanto busca artigo completo
+  document.getElementById('modalArtigo').innerHTML = `
+    <div style="padding:80px;text-align:center;color:#888">
+      <div style="font-size:32px;margin-bottom:16px">⏳</div>
+      <div>Carregando artigo...</div>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+
+  // Busca o JSON completo do post no GitHub
+  let postCompleto = post;
+  if (post.slug) {
+    try {
+      const url = `https://raw.githubusercontent.com/Aphex-consultoria/aphex-site/main/blog/posts/${post.slug}.json`;
+      const res = await fetch(url);
+      if (res.ok) {
+        postCompleto = await res.json();
+      }
+    } catch (err) {
+      console.warn('Erro ao buscar post completo:', err);
+    }
+  }
+
+  const tema = TEMAS[postCompleto.tema] || TEMAS.gestao;
+  const data = postCompleto.publicadoEm
+    ? new Date(postCompleto.publicadoEm).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
     : '';
-  const imgSrc = post.imagem || post.imagemPath;
+  const imgSrc = postCompleto.imagem || post.imagem;
+  const fonte = postCompleto.fonte || {};
 
   document.getElementById('modalArtigo').innerHTML = `
     <div class="modal-artigo-img">
       ${imgSrc
-        ? `<img src="${imgSrc}" alt="${post.titulo_blog}">`
+        ? `<img src="${imgSrc}" alt="${postCompleto.titulo}">`
         : `<div class="modal-artigo-img-placeholder">${tema.icon}</div>`}
       <button class="modal-fechar" onclick="fecharModal()">×</button>
     </div>
     <div class="modal-artigo-body">
       <div class="modal-tema">${tema.label}</div>
-      <h1 class="modal-titulo">${post.titulo_blog || post.titulo_card}</h1>
+      <h1 class="modal-titulo">${postCompleto.titulo || post.titulo_blog || ''}</h1>
       <div class="modal-meta">
         <span>📅 ${data}</span>
-        <span>📰 ${post.fonte_nome || 'Aphex'}</span>
+        <span>📰 ${fonte.nome || 'Aphex'}</span>
       </div>
-      <div class="modal-conteudo">${post.artigo_blog || ''}</div>
-      ${post.fonte_link ? `<div class="modal-fonte">Fonte original: <a href="${post.fonte_link}" target="_blank">${post.fonte_nome}</a></div>` : ''}
+      <div class="modal-conteudo">${postCompleto.conteudo || postCompleto.artigo_blog || '<p>Conteúdo não disponível.</p>'}</div>
+      ${fonte.link ? `<div class="modal-fonte">Fonte original: <a href="${fonte.link}" target="_blank">${fonte.nome}</a></div>` : ''}
     </div>
   `;
-  document.getElementById('modalOverlay').classList.add('aberto');
-  document.body.style.overflow = 'hidden';
 }
 
 function fecharModal(e) {
