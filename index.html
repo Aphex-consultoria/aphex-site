@@ -515,13 +515,21 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
-  function check(){
-    document.querySelectorAll(".r").forEach(function(el){
-      if(el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add("v");
-    });
+  var els = document.querySelectorAll(".r");
+  function reveal(el){ el.classList.add("v"); }
+  if(!("IntersectionObserver" in window)){
+    els.forEach(reveal);
+    return;
   }
-  window.addEventListener("scroll", check, {passive:true});
-  check();
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        reveal(en.target);
+        io.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: "0px 0px 45% 0px", threshold: 0 });
+  els.forEach(function(el){ io.observe(el); });
 })();
 (function(){
   var done = false;
