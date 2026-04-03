@@ -222,8 +222,6 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 .flinks{display:flex;gap:20px}
 .flinks a{color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;transition:color .2s}
 .flinks a:hover{color:rgba(255,255,255,.8)}
-.r{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.r.v{opacity:1;transform:translateY(0)}
 @media(max-width:960px){
   nav{padding:0 20px;height:72px}
   .nav-logo{height:46px}
@@ -312,7 +310,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   </ul>
   <div class="nav-right">
     <a href="#contato" class="nav-cta">Pedir retorno</a>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menu de navegação"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mmenu" id="mm">
@@ -359,7 +357,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   </div>
 </div>
 
-<section class="sec r" id="sofia" style="background:var(--cream)" aria-labelledby="sofia-sec-heading">
+<section class="sec" id="sofia" style="background:var(--cream)" aria-labelledby="sofia-sec-heading">
   <div class="sec-in">
     <div class="sofia-head">
       <div class="eyebrow">Produto Aphex</div>
@@ -394,7 +392,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   </div>
 </section>
 
-<section class="bio r" id="fundador" aria-labelledby="fundador-heading">
+<section class="bio" id="fundador" aria-labelledby="fundador-heading">
   <div class="bio-in bio-mentoria-combined">
     <div class="bio-top">
       <div class="bwrap">
@@ -427,7 +425,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   </div>
 </section>
 
-<section class="depos r" id="depoimentos" aria-labelledby="depoimentos-heading">
+<section class="depos" id="depoimentos" aria-labelledby="depoimentos-heading">
   <div class="depos-in">
     <div class="eyebrow">Depoimentos</div>
     <h2 class="sec-h" id="depoimentos-heading">Avaliações de profissionais de saúde sobre a mentoria</h2>
@@ -468,7 +466,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
   <p class="cdtext">Se o desafio for maior que uma ferramenta ou uma mentoria pontual, a Aphex entra com <a href="https://wa.me/5511995862295?text=Tenho%20interesse%20na%20consultoria%20Aphex.">consultoria em gestão de clínicas</a>: estratégia, finanças, expansão e compliance com plano que sua equipe consegue executar.</p>
 </div>
 
-<section class="cta r" id="contato" aria-labelledby="contato-heading">
+<section class="cta" id="contato" aria-labelledby="contato-heading">
   <div class="cta-in">
     <div>
       <div class="cey">Próximo passo</div>
@@ -514,23 +512,6 @@ footer p{font-size:13px;color:rgba(255,255,255,.35)}
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function(){
-  var els = document.querySelectorAll(".r");
-  function reveal(el){ el.classList.add("v"); }
-  if(!("IntersectionObserver" in window)){
-    els.forEach(reveal);
-    return;
-  }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){
-        reveal(en.target);
-        io.unobserve(en.target);
-      }
-    });
-  }, { rootMargin: "0px 0px 45% 0px", threshold: 0 });
-  els.forEach(function(el){ io.observe(el); });
-})();
 (function(){
   var done = false;
   function run(){
